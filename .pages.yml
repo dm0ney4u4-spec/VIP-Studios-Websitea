@@ -1,0 +1,302 @@
+media:
+  input: assets/media
+  output: /assets/media
+  rename: safe
+  categories: [image]
+
+content:
+  - name: site_settings
+    label: Site Settings
+    type: file
+    path: content/site.json
+    format: json
+    fields:
+      - name: site_name
+        label: Site Name
+        type: string
+        required: true
+      - name: short_name
+        label: Short Name
+        type: string
+      - name: logo
+        label: Site Logo
+        type: image
+        required: true
+      - name: discord_url
+        label: Discord Invite URL
+        type: string
+        required: true
+      - name: roblox_group_url
+        label: Roblox Community Group URL
+        type: string
+        required: true
+      - name: theme
+        label: Theme Colors
+        type: object
+        fields:
+          - name: accent
+            label: Gold Accent (hex)
+            type: string
+          - name: accent_secondary
+            label: Orange Accent (hex)
+            type: string
+          - name: accent_red
+            label: Red Accent (hex)
+            type: string
+          - name: background
+            label: Background (hex)
+            type: string
+      - name: navigation
+        label: Section Visibility
+        type: object
+        fields:
+          - name: show_updates
+            label: Show Updates
+            type: boolean
+          - name: show_projects
+            label: Show Projects
+            type: boolean
+          - name: show_staff
+            label: Show Staff
+            type: boolean
+          - name: show_applications
+            label: Show Applications
+            type: boolean
+          - name: show_community
+            label: Show Community
+            type: boolean
+      - name: hero
+        label: Home / Hero Section
+        type: object
+        fields:
+          - name: eyebrow
+            label: Small Heading
+            type: string
+          - name: title_before
+            label: Title - Before Highlight
+            type: string
+          - name: title_highlight
+            label: Highlighted Word
+            type: string
+          - name: title_after
+            label: Title - After Highlight
+            type: string
+          - name: description
+            label: Description
+            type: text
+          - name: primary_button
+            label: Discord Button Text
+            type: string
+          - name: secondary_button
+            label: Roblox Group Button Text
+            type: string
+      - name: community
+        label: Community Section
+        type: object
+        fields:
+          - name: eyebrow
+            type: string
+          - name: title
+            type: string
+          - name: description
+            type: text
+      - name: updates
+        label: Updates Section
+        type: object
+        fields:
+          - name: eyebrow
+            type: string
+          - name: title
+            type: string
+          - name: description
+            type: text
+      - name: projects
+        label: Projects Section
+        type: object
+        fields:
+          - name: eyebrow
+            type: string
+          - name: title
+            type: string
+          - name: description
+            type: text
+          - name: mode
+            label: Projects Display Mode
+            type: select
+            options:
+              values:
+                - name: construction
+                  label: Under Construction
+                - name: live
+                  label: Show Projects
+          - name: construction_title
+            label: Construction Heading
+            type: string
+          - name: construction_text
+            label: Construction Description
+            type: text
+      - name: staff
+        label: Staff Section
+        type: object
+        fields:
+          - name: eyebrow
+            type: string
+          - name: title
+            type: string
+          - name: description
+            type: text
+          - name: ranks_title
+            label: Chain of Command Heading
+            type: string
+          - name: portfolios_title
+            label: Portfolios Heading
+            type: string
+      - name: applications
+        label: Applications Section
+        type: object
+        fields:
+          - name: eyebrow
+            type: string
+          - name: title
+            type: string
+          - name: text
+            label: How to Apply Text
+            type: text
+          - name: note
+            label: Extra Note
+            type: text
+          - name: button_label
+            label: Discord Button Text
+            type: string
+      - name: footer
+        label: Footer
+        type: object
+        fields:
+          - name: tagline
+            type: string
+          - name: disclaimer
+            type: text
+
+  - name: ranks
+    label: Chain of Command
+    type: file
+    path: content/ranks.json
+    format: json
+    list: true
+    fields:
+      - name: name
+        label: Rank Name
+        type: string
+        required: true
+      - name: description
+        label: Rank Description
+        type: string
+      - name: order
+        label: Order
+        type: number
+        required: true
+      - name: visible
+        label: Show This Rank
+        type: boolean
+
+  - name: staff
+    label: Staff Members & Portfolios
+    type: file
+    path: content/staff.json
+    format: json
+    list: true
+    fields:
+      - name: username
+        label: Roblox Username
+        type: string
+        required: true
+      - name: display_name
+        label: Display Name
+        type: string
+        required: true
+      - name: rank
+        label: Rank
+        type: string
+        description: Type the staff member's current rank. This stays editable even if you change the chain of command.
+      - name: photo
+        label: Staff Photo / Roblox Avatar
+        type: image
+      - name: description
+        label: Portfolio Description
+        type: text
+      - name: portfolio_label
+        label: Small Portfolio Label
+        type: string
+      - name: visible
+        label: Show This Staff Member
+        type: boolean
+      - name: order
+        label: Display Order
+        type: number
+
+  - name: projects
+    label: Projects
+    type: file
+    path: content/projects.json
+    format: json
+    list: true
+    fields:
+      - name: title
+        label: Project Name
+        type: string
+        required: true
+      - name: status
+        label: Status
+        type: select
+        options:
+          values: [Coming Soon, In Development, Released, Archived]
+      - name: description
+        label: Description
+        type: text
+      - name: image
+        label: Project Image
+        type: image
+      - name: link
+        label: Roblox / Project Link
+        type: string
+      - name: button_label
+        label: Button Text
+        type: string
+      - name: visible
+        label: Show This Project
+        type: boolean
+      - name: order
+        label: Display Order
+        type: number
+
+  - name: updates
+    label: Updates
+    type: file
+    path: content/updates.json
+    format: json
+    list: true
+    fields:
+      - name: title
+        label: Update Title
+        type: string
+        required: true
+      - name: date
+        label: Date
+        type: date
+        options:
+          format: yyyy-MM-dd
+      - name: category
+        label: Category
+        type: string
+      - name: summary
+        label: Update Text
+        type: text
+      - name: image
+        label: Optional Image
+        type: image
+      - name: link
+        label: Optional Link
+        type: string
+      - name: visible
+        label: Show This Update
+        type: boolean

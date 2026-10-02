@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="VIP Studios Roblox community">
+  <meta name="theme-color" content="#07090d">
+  <title>VIP Studios</title>
+  <link rel="icon" href="/assets/media/vip-studios-round.png">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="page-glow page-glow-one"></div>
+  <div class="page-glow page-glow-two"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#home">
+      <img id="headerLogo" src="/assets/media/vip-studios-round.png" alt="VIP Studios logo">
+      <span id="headerName">VIP Studios</span>
+    </a>
+    <button class="menu-button" id="menuButton" aria-expanded="false" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="nav"></nav>
+    <a class="header-cta" id="headerDiscord" target="_blank" rel="noopener noreferrer">JOIN DISCORD</a>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-copy reveal">
+        <p class="eyebrow" id="heroEyebrow"></p>
+        <h1><span id="heroBefore"></span> <em id="heroHighlight"></em><br><span id="heroAfter"></span></h1>
+        <p class="hero-description" id="heroDescription"></p>
+        <div class="actions">
+          <a class="button button-gold" id="heroDiscord" target="_blank" rel="noopener noreferrer"></a>
+          <a class="button button-outline" id="heroRoblox" target="_blank" rel="noopener noreferrer"></a>
+        </div>
+        <div class="hero-pills">
+          <span>ROBLOX</span><span>COMMUNITY</span><span>CREATIVITY</span>
+        </div>
+      </div>
+      <div class="hero-art reveal">
+        <div class="logo-halo"></div>
+        <img id="heroLogo" src="/assets/media/vip-studios-round.png" alt="VIP Studios">
+        <div class="hero-card">
+          <small>VIP STUDIOS</small>
+          <strong>COMMUNITY HUB</strong>
+        </div>
+      </div>
+    </section>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>VIP STUDIOS</span><b>◆</b><span>UPDATES</span><b>◆</b><span>STAFF PORTFOLIOS</span><b>◆</b><span>ROBLOX COMMUNITY</span><b>◆</b><span>VIP STUDIOS</span><b>◆</b><span>UPDATES</span><b>◆</b><span>STAFF PORTFOLIOS</span><b>◆</b><span>ROBLOX COMMUNITY</span>
+      </div>
+    </div>
+
+    <section class="section" id="updatesSection">
+      <div class="section-heading reveal">
+        <div><p class="eyebrow" id="updatesEyebrow"></p><h2 id="updatesTitle"></h2></div>
+        <p id="updatesDescription"></p>
+      </div>
+      <div class="updates-grid" id="updatesGrid"></div>
+    </section>
+
+    <section class="section" id="projectsSection">
+      <div class="section-heading reveal">
+        <div><p class="eyebrow" id="projectsEyebrow"></p><h2 id="projectsTitle"></h2></div>
+        <p id="projectsDescription"></p>
+      </div>
+      <div id="projectsContent"></div>
+    </section>
+
+    <section class="section staff-section" id="staffSection">
+      <div class="section-heading reveal">
+        <div><p class="eyebrow" id="staffEyebrow"></p><h2 id="staffTitle"></h2></div>
+        <p id="staffDescription"></p>
+      </div>
+
+      <h3 class="subheading reveal" id="ranksTitle"></h3>
+      <div class="rank-grid" id="rankGrid"></div>
+
+      <h3 class="subheading portfolio-heading reveal" id="portfoliosTitle"></h3>
+      <div class="portfolio-grid" id="portfolioGrid"></div>
+    </section>
+
+    <section class="section applications" id="applicationsSection">
+      <div class="application-card reveal">
+        <div>
+          <p class="eyebrow" id="applicationsEyebrow"></p>
+          <h2 id="applicationsTitle"></h2>
+          <p id="applicationsText"></p>
+          <p class="application-note" id="applicationsNote"></p>
+        </div>
+        <a class="button button-gold" id="applicationsButton" target="_blank" rel="noopener noreferrer"></a>
+      </div>
+    </section>
+
+    <section class="community" id="communitySection">
+      <div class="community-inner reveal">
+        <div>
+          <p class="eyebrow" id="communityEyebrow"></p>
+          <h2 id="communityTitle"></h2>
+          <p id="communityDescription"></p>
+        </div>
+        <div class="community-actions">
+          <a class="button button-dark" id="communityDiscord" target="_blank" rel="noopener noreferrer">OPEN DISCORD</a>
+          <a class="button button-dark" id="communityRoblox" target="_blank" rel="noopener noreferrer">ROBLOX GROUP</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand">
+      <img id="footerLogo" src="/assets/media/vip-studios-round.png" alt="">
+      <div><strong id="footerName"></strong><span id="footerTagline"></span></div>
+    </div>
+    <p id="footerDisclaimer"></p>
+    <span>© <span id="year"></span> <span id="footerCopyright"></span></span>
+  </footer>
+
+  <div class="load-error" id="loadError" hidden>
+    <strong>Local preview note:</strong> this CMS version loads content from JSON files. If you opened index.html by double-clicking it, use VS Code's Live Server instead.
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
