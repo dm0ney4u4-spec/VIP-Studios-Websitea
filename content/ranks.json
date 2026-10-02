@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Owner",
+    "description": "Highest Rank",
+    "order": 1,
+    "visible": true
+  },
+  {
+    "name": "Senior Moderator",
+    "description": "Second in Command",
+    "order": 2,
+    "visible": true
+  },
+  {
+    "name": "Moderator",
+    "description": "Community Staff",
+    "order": 3,
+    "visible": true
+  }
+]

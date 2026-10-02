@@ -1,0 +1,65 @@
+{
+  "site_name": "VIP Studios",
+  "short_name": "VIP",
+  "logo": "/assets/media/vip-studios-round.png",
+  "discord_url": "https://discord.gg/xQSxuEUQH5",
+  "roblox_group_url": "https://www.roblox.com/share/g/46231394",
+  "theme": {
+    "accent": "#f6c515",
+    "accent_secondary": "#ff8a00",
+    "accent_red": "#ef3340",
+    "background": "#07090d"
+  },
+  "navigation": {
+    "show_updates": true,
+    "show_projects": true,
+    "show_staff": true,
+    "show_applications": true,
+    "show_community": true
+  },
+  "hero": {
+    "eyebrow": "ROBLOX COMMUNITY",
+    "title_before": "WELCOME TO",
+    "title_highlight": "VIP",
+    "title_after": "STUDIOS",
+    "description": "VIP Studios is a Roblox community focused on fun, creativity, and bringing members together. All important information, updates, staff applications, and announcements can be found in the Discord.",
+    "primary_button": "JOIN DISCORD",
+    "secondary_button": "ROBLOX GROUP"
+  },
+  "community": {
+    "eyebrow": "GET CONNECTED",
+    "title": "THE DISCORD IS THE MAIN HUB.",
+    "description": "All information can be found in the Discord, including updates, announcements, community information, and when applications are available."
+  },
+  "updates": {
+    "eyebrow": "WHAT'S NEW",
+    "title": "UPDATES",
+    "description": "The latest VIP Studios news, announcements, and changes."
+  },
+  "projects": {
+    "eyebrow": "OUR WORK",
+    "title": "PROJECTS",
+    "description": "Projects from VIP Studios will appear here.",
+    "mode": "construction",
+    "construction_title": "Under Construction, Coming Soon!",
+    "construction_text": "VIP Studios projects will be revealed here when they are ready."
+  },
+  "staff": {
+    "eyebrow": "THE TEAM",
+    "title": "STAFF",
+    "description": "Meet the people behind VIP Studios.",
+    "ranks_title": "CHAIN OF COMMAND",
+    "portfolios_title": "STAFF PORTFOLIOS"
+  },
+  "applications": {
+    "eyebrow": "STAFF APPLICATIONS",
+    "title": "HOW TO APPLY",
+    "text": "Look in the announcements channel for staff application information. Applications do not open often, so make sure to stay in the Discord and keep checking for updates.",
+    "note": "All information can be found in the Discord.",
+    "button_label": "OPEN DISCORD"
+  },
+  "footer": {
+    "tagline": "Roblox community",
+    "disclaimer": "VIP Studios is an independent Roblox community and is not affiliated with Roblox Corporation."
+  }
+}
