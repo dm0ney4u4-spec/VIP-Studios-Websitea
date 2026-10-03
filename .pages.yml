@@ -72,6 +72,9 @@ content:
           - name: show_updates
             label: Show Updates
             type: boolean
+          - name: show_milestones
+            label: Show Milestones
+            type: boolean
           - name: show_projects
             label: Show Projects
             type: boolean
@@ -113,18 +116,6 @@ content:
         label: Community Section
         type: object
         fields:
-          - name: status
-            label: Application Status
-            type: select
-            options:
-              values:
-                - name: closed
-                  label: Closed
-                - name: open
-                  label: Open
-          - name: status_message
-            label: Status Message
-            type: string
           - name: eyebrow
             type: string
           - name: title
@@ -140,6 +131,19 @@ content:
           - name: title
             type: string
           - name: description
+            type: text
+      - name: milestones
+        label: Milestones Section
+        type: object
+        fields:
+          - name: eyebrow
+            label: Small Heading
+            type: string
+          - name: title
+            label: Title
+            type: string
+          - name: description
+            label: Description
             type: text
       - name: projects
         label: Projects Section
@@ -186,6 +190,18 @@ content:
         label: Applications Section
         type: object
         fields:
+          - name: status
+            label: Application Status
+            type: select
+            options:
+              values:
+                - name: closed
+                  label: Closed
+                - name: open
+                  label: Open
+          - name: status_message
+            label: Status Message
+            type: string
           - name: eyebrow
             type: string
           - name: title
