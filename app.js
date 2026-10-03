@@ -42,6 +42,7 @@ function buildNav(site) {
   const links = [
     ['Home', '#home', true],
     ['Updates', '#updatesSection', visibility.show_updates !== false],
+    ['Milestones', '#milestonesSection', visibility.show_milestones !== false],
     ['Projects', '#projectsSection', visibility.show_projects !== false],
     ['Staff', '#staffSection', visibility.show_staff !== false],
     ['Applications', '#applicationsSection', visibility.show_applications !== false],
@@ -54,6 +55,76 @@ function buildNav(site) {
     a.addEventListener('click', () => nav.classList.remove('open'));
     nav.appendChild(a);
   });
+}
+
+function animateCounter(element, target, duration = 1500) {
+  if (!element || !Number.isFinite(target)) return;
+  const start = Number(String(element.textContent || '0').replace(/,/g, '')) || 0;
+  const difference = target - start;
+  const startTime = performance.now();
+
+  function frame(now) {
+    const progress = Math.min((now - startTime) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const value = Math.round(start + difference * eased);
+    element.textContent = value.toLocaleString();
+    if (progress < 1) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+
+function getNextMilestone(memberCount, goals) {
+  const cleanGoals = Array.isArray(goals)
+    ? goals.map(Number).filter(Number.isFinite).sort((a,b) => a-b)
+    : [];
+  let next = cleanGoals.find(goal => goal > memberCount);
+  if (!next) {
+    const step = memberCount < 10000 ? 1000 : 5000;
+    next = Math.ceil((memberCount + 1) / step) * step;
+  }
+  const previousGoals = cleanGoals.filter(goal => goal <= memberCount);
+  const previous = previousGoals.length ? previousGoals[previousGoals.length - 1] : 0;
+  return { previous, next };
+}
+
+async function updateDiscordMilestones(site, animate = true) {
+  const note = $('memberDataNote');
+  try {
+    const response = await fetch('/.netlify/functions/discord-stats', { cache: 'no-store' });
+    if (!response.ok) throw new Error('Discord stats unavailable');
+    const data = await response.json();
+    const members = Number(data.memberCount) || 0;
+    const online = Number(data.onlineCount) || 0;
+
+    if (animate) {
+      animateCounter($('memberCount'), members);
+      animateCounter($('onlineCount'), online, 1250);
+    } else {
+      setText('memberCount', members.toLocaleString());
+      setText('onlineCount', online.toLocaleString());
+    }
+
+    const { previous, next } = getNextMilestone(members, site.milestones?.goals);
+    setText('nextMilestone', next.toLocaleString());
+
+    const span = Math.max(next - previous, 1);
+    const progress = Math.max(0, Math.min(100, ((members - previous) / span) * 100));
+    const bar = $('milestoneProgressBar');
+    if (bar) requestAnimationFrame(() => { bar.style.width = `${progress}%`; });
+
+    const remaining = Math.max(next - members, 0);
+    setText('milestoneProgressText', remaining === 0
+      ? 'Milestone reached!'
+      : `${remaining.toLocaleString()} more member${remaining === 1 ? '' : 's'} to reach ${next.toLocaleString()}.`);
+
+    if (note) note.textContent = data.guildName
+      ? `Live estimate for ${data.guildName} • refreshed automatically`
+      : 'Live Discord estimate • refreshed automatically';
+  } catch (error) {
+    console.error(error);
+    if (note) note.textContent = 'Live count temporarily unavailable. Check back shortly.';
+    setText('milestoneProgressText', 'Discord statistics will refresh automatically.');
+  }
 }
 
 function renderUpdates(items) {
@@ -268,6 +339,7 @@ function renderMaintenance(site) {
 function configureVisibility(site) {
   const v = site.navigation || {};
   $('updatesSection').hidden = v.show_updates === false;
+  $('milestonesSection').hidden = v.show_milestones === false;
   $('projectsSection').hidden = v.show_projects === false;
   $('staffSection').hidden = v.show_staff === false;
   $('applicationsSection').hidden = v.show_applications === false;
@@ -317,6 +389,10 @@ async function init() {
     setText('updatesEyebrow', site.updates?.eyebrow);
     setText('updatesTitle', site.updates?.title);
     setText('updatesDescription', site.updates?.description);
+    setText('milestonesEyebrow', site.milestones?.eyebrow);
+    setText('milestonesTitle', site.milestones?.title);
+    setText('milestonesDescription', site.milestones?.description);
+    setLink('milestonesDiscord', site.discord_url);
     setText('projectsEyebrow', site.projects?.eyebrow);
     setText('projectsTitle', site.projects?.title);
     setText('projectsDescription', site.projects?.description);
@@ -351,6 +427,8 @@ async function init() {
     setText('year', new Date().getFullYear());
 
     renderUpdates(updates);
+    updateDiscordMilestones(site);
+    setInterval(() => updateDiscordMilestones(site, true), 60000);
     renderProjects(site, projects);
     renderRanks(ranks);
     renderStaff(site, staff);
