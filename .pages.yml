@@ -113,6 +113,18 @@ content:
         label: Community Section
         type: object
         fields:
+          - name: status
+            label: Application Status
+            type: select
+            options:
+              values:
+                - name: closed
+                  label: Closed
+                - name: open
+                  label: Open
+          - name: status_message
+            label: Status Message
+            type: string
           - name: eyebrow
             type: string
           - name: title
