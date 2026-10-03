@@ -214,6 +214,57 @@ function renderStaff(site, items) {
   });
 }
 
+function renderMaintenance(site) {
+  const cfg = site.maintenance || {};
+  if (!cfg.enabled) return false;
+
+  document.title = `${site.site_name || 'VIP Studios'} — Under Construction`;
+  const logo = site.logo || '/assets/media/vip-studios-round.png';
+
+  document.body.innerHTML = `
+    <main class="maintenance-page">
+      <div class="maintenance-glow maintenance-glow-one"></div>
+      <div class="maintenance-glow maintenance-glow-two"></div>
+      <section class="maintenance-card">
+        <div class="maintenance-badge">VIP STUDIOS</div>
+        <img class="maintenance-logo" src="${logo}" alt="${site.site_name || 'VIP Studios'} logo">
+        <div class="maintenance-tape">UNDER CONSTRUCTION • UNDER CONSTRUCTION • UNDER CONSTRUCTION</div>
+        <h1>${cfg.title || 'WEBSITE UNDER CONSTRUCTION'}</h1>
+        <p>${cfg.message || 'We are currently working on the website. Please check back soon!'}</p>
+        <div class="maintenance-actions">
+          ${cfg.show_discord_button !== false ? `<a class="maintenance-button primary" href="${site.discord_url || '#'}" target="_blank" rel="noopener noreferrer">JOIN DISCORD</a>` : ''}
+          ${cfg.show_roblox_button !== false ? `<a class="maintenance-button secondary" href="${site.roblox_group_url || '#'}" target="_blank" rel="noopener noreferrer">ROBLOX GROUP</a>` : ''}
+        </div>
+        <span class="maintenance-note">VIP Studios • Check back soon</span>
+      </section>
+    </main>
+    <style>
+      body{margin:0;background:#07090d;color:#fff;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow:hidden}
+      .maintenance-page{position:relative;min-height:100vh;display:grid;place-items:center;padding:28px;background:
+        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px),
+        radial-gradient(circle at 20% 20%,rgba(246,197,21,.14),transparent 30%),
+        radial-gradient(circle at 80% 75%,rgba(239,51,64,.10),transparent 30%),#07090d;
+        background-size:42px 42px,42px 42px,auto,auto,auto}
+      .maintenance-card{position:relative;z-index:2;width:min(760px,calc(100vw - 42px));text-align:center;padding:58px 34px 42px;border:1px solid rgba(255,255,255,.11);background:rgba(10,13,18,.90);box-shadow:0 30px 90px rgba(0,0,0,.55);overflow:hidden}
+      .maintenance-logo{width:170px;height:170px;object-fit:contain;margin:8px auto 22px;filter:drop-shadow(0 16px 35px rgba(246,197,21,.22))}
+      .maintenance-badge{display:inline-block;padding:7px 12px;border:1px solid rgba(246,197,21,.45);color:#f6c515;font:800 12px/1 Inter,sans-serif;letter-spacing:.18em}
+      .maintenance-card h1{margin:30px 0 16px;font-family:"Barlow Condensed",Inter,sans-serif;font-size:clamp(48px,8vw,88px);line-height:.88;letter-spacing:-.02em}
+      .maintenance-card p{max-width:610px;margin:0 auto;color:#aeb7c4;font-size:16px;line-height:1.75}
+      .maintenance-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:30px}
+      .maintenance-button{min-width:160px;padding:15px 22px;font-weight:900;letter-spacing:.05em;text-decoration:none}
+      .maintenance-button.primary{background:linear-gradient(135deg,#f6c515,#ff8a00);color:#090b0e}
+      .maintenance-button.secondary{border:1px solid rgba(246,197,21,.55);color:#fff;background:rgba(246,197,21,.07)}
+      .maintenance-note{display:block;margin-top:34px;color:#5f6875;font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+      .maintenance-tape{position:absolute;left:-12%;right:-12%;top:25px;padding:9px 0;background:repeating-linear-gradient(135deg,#f6c515 0 24px,#111 24px 48px);color:#0b0c0f;font-weight:1000;letter-spacing:.08em;transform:rotate(-4deg);box-shadow:0 8px 24px rgba(0,0,0,.35)}
+      .maintenance-glow{position:absolute;border-radius:50%;filter:blur(80px);opacity:.28}
+      .maintenance-glow-one{width:320px;height:320px;background:#f6c515;left:-100px;top:-100px}
+      .maintenance-glow-two{width:280px;height:280px;background:#ef3340;right:-80px;bottom:-80px}
+      @media(max-width:600px){.maintenance-card{padding:54px 20px 34px}.maintenance-logo{width:135px;height:135px}.maintenance-card p{font-size:14px}.maintenance-button{width:100%}}
+    </style>`;
+  return true;
+}
+
 function configureVisibility(site) {
   const v = site.navigation || {};
   $('updatesSection').hidden = v.show_updates === false;
@@ -246,6 +297,7 @@ async function init() {
     ]);
 
     applyTheme(site);
+    if (renderMaintenance(site)) return;
     buildNav(site);
     configureVisibility(site);
 
