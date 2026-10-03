@@ -15,7 +15,8 @@
     "show_projects": true,
     "show_staff": true,
     "show_applications": true,
-    "show_community": true
+    "show_community": true,
+    "show_milestones": true
   },
   "hero": {
     "eyebrow": "ROBLOX COMMUNITY",
@@ -70,5 +71,20 @@
     "message": "VIP Studios is currently working on the website. Please check back soon! For updates and community information, join our Discord.",
     "show_discord_button": true,
     "show_roblox_button": true
+  },
+  "milestones": {
+    "eyebrow": "COMMUNITY GROWTH",
+    "title": "MILESTONES",
+    "description": "Watch the VIP Studios Discord community grow toward the next milestone.",
+    "goals": [
+      50,
+      100,
+      250,
+      500,
+      1000,
+      2500,
+      5000,
+      10000
+    ]
   }
 }
