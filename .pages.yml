@@ -30,6 +30,25 @@ content:
         label: Roblox Community Group URL
         type: string
         required: true
+      - name: maintenance
+        label: Maintenance Mode
+        type: object
+        fields:
+          - name: enabled
+            label: Website Under Construction
+            type: boolean
+          - name: title
+            label: Maintenance Heading
+            type: string
+          - name: message
+            label: Maintenance Message
+            type: text
+          - name: show_discord_button
+            label: Show Discord Button
+            type: boolean
+          - name: show_roblox_button
+            label: Show Roblox Group Button
+            type: boolean
       - name: theme
         label: Theme Colors
         type: object
