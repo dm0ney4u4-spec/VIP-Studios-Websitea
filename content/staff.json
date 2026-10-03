@@ -8,5 +8,15 @@
     "portfolio_label": "OWNER PORTFOLIO",
     "visible": true,
     "order": 1
+  },
+  {
+    "username": "nrval",
+    "display_name": "nrval",
+    "rank": "Senior Moderator",
+    "photo": "/assets/media/nrval-avatar.webp",
+    "description": "Hiya! I'm nark, I have been moderating for 4+ years and look forward to connecting and meeting new people in the community.",
+    "portfolio_label": "SENIOR MODERATOR PORTFOLIO",
+    "visible": true,
+    "order": 2
   }
 ]
