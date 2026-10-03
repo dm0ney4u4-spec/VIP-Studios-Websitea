@@ -90,7 +90,10 @@ function getNextMilestone(memberCount, goals) {
 async function updateDiscordMilestones(site, animate = true) {
   const note = $('memberDataNote');
   try {
-    const response = await fetch('/.netlify/functions/discord-stats', { cache: 'no-store' });
+    let response = await fetch('/discord-stats', { cache: 'no-store' });
+    if (!response.ok) {
+      response = await fetch('/.netlify/functions/discord-stats', { cache: 'no-store' });
+    }
     if (!response.ok) throw new Error('Discord stats unavailable');
     const data = await response.json();
     const members = Number(data.memberCount) || 0;
