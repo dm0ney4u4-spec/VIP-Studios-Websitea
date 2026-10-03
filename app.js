@@ -325,6 +325,15 @@ async function init() {
     setText('staffDescription', site.staff?.description);
     setText('ranksTitle', site.staff?.ranks_title);
     setText('portfoliosTitle', site.staff?.portfolios_title);
+    const applicationState = String(site.applications?.status || 'closed').toLowerCase();
+    const applicationStatus = $('applicationStatus');
+    if (applicationStatus) {
+      const isOpen = applicationState === 'open';
+      applicationStatus.textContent = isOpen ? 'APPLICATIONS OPEN' : 'APPLICATIONS CLOSED';
+      applicationStatus.classList.toggle('is-open', isOpen);
+      applicationStatus.classList.toggle('is-closed', !isOpen);
+    }
+    setText('applicationStatusMessage', site.applications?.status_message);
     setText('applicationsEyebrow', site.applications?.eyebrow);
     setText('applicationsTitle', site.applications?.title);
     setText('applicationsText', site.applications?.text);
