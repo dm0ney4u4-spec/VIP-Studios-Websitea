@@ -302,6 +302,11 @@ function renderMaintenance(site) {
         <div class="maintenance-tape">UNDER CONSTRUCTION • UNDER CONSTRUCTION • UNDER CONSTRUCTION</div>
         <h1>${cfg.title || 'WEBSITE UNDER CONSTRUCTION'}</h1>
         <p>${cfg.message || 'We are currently working on the website. Please check back soon!'}</p>
+        <div class="maintenance-countdown-wrap">
+          <span class="maintenance-countdown-label">WEBSITE RELEASE COUNTDOWN</span>
+          <strong class="maintenance-countdown" id="maintenanceCountdown">05:00</strong>
+          <small>Release time: 6:15 PM CDT</small>
+        </div>
         <div class="maintenance-actions">
           ${cfg.show_discord_button !== false ? `<a class="maintenance-button primary" href="${site.discord_url || '#'}" target="_blank" rel="noopener noreferrer">JOIN DISCORD</a>` : ''}
           ${cfg.show_roblox_button !== false ? `<a class="maintenance-button secondary" href="${site.roblox_group_url || '#'}" target="_blank" rel="noopener noreferrer">ROBLOX GROUP</a>` : ''}
@@ -322,6 +327,10 @@ function renderMaintenance(site) {
       .maintenance-badge{display:inline-block;padding:7px 12px;border:1px solid rgba(246,197,21,.45);color:#f6c515;font:800 12px/1 Inter,sans-serif;letter-spacing:.18em}
       .maintenance-card h1{margin:30px 0 16px;font-family:"Barlow Condensed",Inter,sans-serif;font-size:clamp(48px,8vw,88px);line-height:.88;letter-spacing:-.02em}
       .maintenance-card p{max-width:610px;margin:0 auto;color:#aeb7c4;font-size:16px;line-height:1.75}
+      .maintenance-countdown-wrap{margin:26px auto 0;max-width:360px;padding:18px 20px;border:1px solid rgba(246,197,21,.35);background:rgba(246,197,21,.06);box-shadow:inset 0 0 30px rgba(246,197,21,.035)}
+      .maintenance-countdown-label{display:block;color:#f6c515;font-size:10px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
+      .maintenance-countdown{display:block;margin-top:8px;font-size:clamp(48px,8vw,76px);line-height:1;font-variant-numeric:tabular-nums;letter-spacing:.02em;text-shadow:0 0 24px rgba(246,197,21,.16)}
+      .maintenance-countdown-wrap small{display:block;margin-top:8px;color:#7f8997;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
       .maintenance-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:30px}
       .maintenance-button{min-width:160px;padding:15px 22px;font-weight:900;letter-spacing:.05em;text-decoration:none}
       .maintenance-button.primary{background:linear-gradient(135deg,#f6c515,#ff8a00);color:#090b0e}
@@ -333,6 +342,27 @@ function renderMaintenance(site) {
       .maintenance-glow-two{width:280px;height:280px;background:#ef3340;right:-80px;bottom:-80px}
       @media(max-width:600px){.maintenance-card{padding:54px 20px 34px}.maintenance-logo{width:135px;height:135px}.maintenance-card p{font-size:14px}.maintenance-button{width:100%}}
     </style>`;
+
+  const countdownEl = document.getElementById('maintenanceCountdown');
+  const releaseTime = new Date('2026-10-03T18:15:00-05:00').getTime();
+  let countdownTimer;
+
+  function updateMaintenanceCountdown() {
+    if (!countdownEl) return;
+    const remaining = Math.max(0, releaseTime - Date.now());
+    const totalSeconds = Math.ceil(remaining / 1000);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    countdownEl.textContent = String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0');
+
+    if (remaining <= 0) {
+      countdownEl.textContent = 'RELEASING NOW';
+      if (countdownTimer) clearInterval(countdownTimer);
+    }
+  }
+
+  updateMaintenanceCountdown();
+  countdownTimer = setInterval(updateMaintenanceCountdown, 1000);
   return true;
 }
 
