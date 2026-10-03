@@ -148,3 +148,10 @@ footer { width: min(var(--max),calc(100% - 48px)); margin: 0 auto; min-height: 1
   .portfolio-card { padding: 26px 20px; }
   .tape { width: 180%; left: -40%; }
 }
+
+.application-status-row { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:18px; }
+.application-status { display:inline-flex; align-items:center; gap:8px; min-height:34px; padding:0 13px; border:1px solid currentColor; font-size:11px; font-weight:1000; letter-spacing:.11em; text-transform:uppercase; }
+.application-status::before { content:""; width:8px; height:8px; border-radius:50%; background:currentColor; box-shadow:0 0 14px currentColor; }
+.application-status.is-open { color:#48e083; background:rgba(72,224,131,.08); }
+.application-status.is-closed { color:#ff5d68; background:rgba(255,93,104,.08); }
+.application-status-message { color:var(--muted); font-size:13px; line-height:1.5; }
