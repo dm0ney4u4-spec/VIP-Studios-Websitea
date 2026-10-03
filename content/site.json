@@ -58,8 +58,8 @@
     "text": "Look in the announcements channel for staff application information. Applications do not open often, so make sure to stay in the Discord and keep checking for updates.",
     "note": "All information can be found in the Discord.",
     "button_label": "OPEN DISCORD",
-    "status": "open",
-    "status_message": "Applications are currently open! Check the Discord announcements for application information and requirements."
+    "status": "closed",
+    "status_message": "Applications are currently closed. Watch the Discord announcements for the next opening."
   },
   "footer": {
     "tagline": "Roblox community",
